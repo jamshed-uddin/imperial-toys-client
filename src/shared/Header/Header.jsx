@@ -1,15 +1,17 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.css";
 
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../pages/userManagement/AuthProvider";
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
+  const { user, userLogOut } = useContext(AuthContext);
 
   return (
-    <div className="flex justify-between h-16  items-center px-6 lg:px-16 py-3 lg:py-0 shadow-lg fixed top-0 right-0 left-0  z-40">
+    <div className="flex justify-between h-16  items-center px-6 lg:px-16 py-3 lg:py-0 shadow-lg fixed top-0 right-0 left-0 bg-white  z-40">
       <div>
         <Link to={"/"}>
           {" "}
@@ -67,13 +69,9 @@ const Header = () => {
           </NavLink>
         </div>
 
-        <div className="mt-4 lg:mt-0  lg:ml-10 ">
-          <Link
-            onClick={() => setOpen(false)}
-            to={"/profile"}
-            className="cursor-pointer"
-          >
-            {/* <img
+        <div className="mt-4 lg:mt-0 lg:flex items-center gap-4 lg:ml-10 ">
+          <Link onClick={() => setOpen(false)} className="cursor-pointer">
+            <img
               className="w-10 rounded-full "
               src={`${
                 user
@@ -81,17 +79,26 @@ const Header = () => {
                   : "https://i.ibb.co/PCJCS96/blank.jpg"
               }`}
               alt=""
-            /> */}
+            />
           </Link>
-          <NavLink
-            onClick={() => setOpen(false)}
-            className={`link font-semibold lg:px-2 py-1 lg:py-0 ${({
-              isActive,
-            }) => (isActive ? "active" : "default")}`}
-            to={"/login"}
-          >
-            Login
-          </NavLink>
+          {user ? (
+            <Link
+              onClick={userLogOut}
+              className={`link font-semibold lg:px-2 py-1 lg:py-0 `}
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              onClick={() => setOpen(false)}
+              className={`link font-semibold lg:px-2 py-1 lg:py-0 ${({
+                isActive,
+              }) => (isActive ? "active" : "default")}`}
+              to={"/login"}
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
 

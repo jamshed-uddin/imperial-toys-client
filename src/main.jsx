@@ -11,6 +11,7 @@ import MyToys from "./pages/others/MyToys";
 import AddToys from "./pages/others/AddToys";
 import Blogs from "./pages/others/Blogs";
 import Register from "./pages/userManagement/Register";
+import AuthProvider from "./pages/userManagement/AuthProvider";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      {" "}
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
