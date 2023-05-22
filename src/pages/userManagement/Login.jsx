@@ -18,27 +18,21 @@ const Login = () => {
     const password = form.password.value;
 
     setErrorText("");
-    // if (error === "Firebase: Error (auth/user-not-found).") {
-    //   setError("User not found.Please Register.");
-    //   return;
-    // } else if (error === "Firebase: Error (auth/wrong-password).") {
-    //   setError("Wrong password.");
-    //   return;
-    // }
+
     login(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         form.reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        // if (error.message === "Firebase: Error (auth/user-not-found).") {
-        //   setError("User not found.Please Register.");
-        // } else if (error.message === "Firebase: Error (auth/wrong-password).") {
-        //   setErrorText("Wrong password.");
-        // }
-        console.error(error);
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
+          setErrorText("User not found.Please Register.");
+        } else if (error.message === "Firebase: Error (auth/wrong-password).") {
+          setErrorText("Wrong password.");
+        }
+        // console.error(error);
       });
   };
 
@@ -75,7 +69,7 @@ const Login = () => {
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <p>error message</p>
+                  <p className="text-sm text-red-500">{errorText}</p>
                 </label>
               </div>
               <div className="form-control mt-6">

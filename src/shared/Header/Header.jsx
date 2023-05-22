@@ -69,10 +69,13 @@ const Header = () => {
           </NavLink>
         </div>
 
-        <div className="mt-4 lg:mt-0 lg:flex items-center gap-4 lg:ml-10 ">
+        <div
+          className="mt-4 lg:mt-0 lg:flex justify-center items-center gap-4 lg:ml-10 "
+          title={user?.email}
+        >
           <Link onClick={() => setOpen(false)} className="cursor-pointer">
             <img
-              className="w-10 rounded-full "
+              className="w-10 mb-4 lg:mb-0 mx-auto rounded-full"
               src={`${
                 user
                   ? "https://i.ibb.co/cDQ2DQH/user.png"
@@ -81,17 +84,18 @@ const Header = () => {
               alt=""
             />
           </Link>
+
           {user ? (
             <Link
               onClick={userLogOut}
-              className={`link font-semibold lg:px-2 py-1 lg:py-0 `}
+              className={`link  btn border-0 bg-pink-600 hover:bg-pink-500 font-semibold lg:px-2 py-1 lg:py-0 `}
             >
               Logout
             </Link>
           ) : (
             <Link
               onClick={() => setOpen(false)}
-              className={`link font-semibold lg:px-2 py-1 lg:py-0 ${({
+              className={`link btn border-0 bg-pink-600 hover:bg-pink-500 font-semibold lg:px-2 py-1 lg:py-0 ${({
                 isActive,
               }) => (isActive ? "active" : "default")}`}
               to={"/login"}

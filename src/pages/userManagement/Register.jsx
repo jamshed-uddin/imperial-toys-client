@@ -9,7 +9,7 @@ const Login = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
-    console.log(form);
+
     const email = form.email.value;
     const password = form.password.value;
 
@@ -22,11 +22,11 @@ const Login = () => {
     registerUser(email, password)
       .then((result) => {
         const registeredUser = result.user;
-        console.log(registeredUser);
+        // console.log(registeredUser);
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         setErrorText(error.message);
       });
   };
