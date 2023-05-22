@@ -11,7 +11,7 @@ const App = () => {
       <div>
         <Header />
       </div>
-      <div className="pt-[65px]">
+      <div className="pt-[65px] px-4 lg:px-16 ">
         <Outlet />
       </div>
       <div>

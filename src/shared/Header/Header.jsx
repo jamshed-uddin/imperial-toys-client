@@ -75,10 +75,10 @@ const Header = () => {
         >
           <Link onClick={() => setOpen(false)} className="cursor-pointer">
             <img
-              className="w-10 mb-4 lg:mb-0 mx-auto rounded-full"
+              className="w-10 bg-black p-1 mb-4 border border-black lg:mb-0 mx-auto rounded-full"
               src={`${
                 user
-                  ? "https://i.ibb.co/cDQ2DQH/user.png"
+                  ? "https://i.ibb.co/Lg08qpN/clone-Head.png"
                   : "https://i.ibb.co/PCJCS96/blank.jpg"
               }`}
               alt=""
