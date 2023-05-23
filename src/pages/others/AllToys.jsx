@@ -43,7 +43,7 @@ const AllToys = () => {
           </thead>
           <tbody>
             {alltoys.slice(0, 20).map((toy, index) => (
-              <tr key={toy}>
+              <tr key={toy?._id}>
                 <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -58,7 +58,10 @@ const AllToys = () => {
                 <td>{toy?.price}</td>
                 <td>{toy?.quantity}</td>
                 <th>
-                  <Link className="btn btn-sm bg-pink-600 hover:bg-pink-500 border-0">
+                  <Link
+                    to={`../toydetails/${toy?._id}`}
+                    className="btn btn-sm bg-pink-600 hover:bg-pink-500 border-0"
+                  >
                     details
                   </Link>
                 </th>
