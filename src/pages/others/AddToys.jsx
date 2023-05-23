@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../userManagement/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddToys = () => {
+  const { user } = useContext(AuthContext);
   const handleAddToy = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -26,6 +29,16 @@ const AddToys = () => {
       description,
     };
 
+    fetch("https://imperial-toys-server.vercel.app/alltoys", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(toyInfo),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        Swal.fire("Toy added successfully.");
+      });
     console.log(toyInfo);
   };
 
@@ -71,8 +84,10 @@ const AddToys = () => {
               type="email"
               required
               name="seller_email"
+              defaultValue={user?.email}
               placeholder="Seller email"
               className="input input-bordered"
+              readOnly
             />
           </div>
           <div className="mx-auto">
