@@ -12,9 +12,10 @@ const Home = () => {
       <Banner />
       <Gallery />
       <ShopByCategory />
-      <Brands />
+
       <ShopFeatures />
       <Reviews />
+      <Brands />
     </>
   );
 };
