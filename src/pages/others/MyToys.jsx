@@ -23,6 +23,14 @@ const MyToys = () => {
       });
   }, [user]);
 
+  const handleDeleteToy = (toyId) => {
+    fetch(`https://imperial-toys-server.vercel.app/alltoys/${toyId}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+  };
+
   return (
     <div className="py-10">
       <h1 className="text-4xl font-bold text-center pb-4">My toys</h1>
@@ -64,12 +72,18 @@ const MyToys = () => {
                     <td>{userToy?.price}</td>
                     <td>{userToy?.quantity}</td>
                     <th>
-                      <button className="btn btn-sm bg-pink-600 hover:bg-pink-500 border-0">
+                      <Link
+                        to={`/updatetoy/${userToy?._id}`}
+                        className="btn btn-sm bg-pink-600 hover:bg-pink-500 border-0"
+                      >
                         Update
-                      </button>
+                      </Link>
                     </th>
                     <th>
-                      <button className="btn btn-sm bg-red-700 hover:bg-red-600 border-0">
+                      <button
+                        onClick={() => handleDeleteToy(userToy?._id)}
+                        className="btn btn-sm bg-red-700 hover:bg-red-600 border-0"
+                      >
                         Delete
                       </button>
                     </th>
@@ -87,6 +101,8 @@ const MyToys = () => {
           </h1>
         )}
       </>
+
+      {/* Put this part before </body> tag */}
     </div>
   );
 };
