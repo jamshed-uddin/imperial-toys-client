@@ -1,3 +1,4 @@
+import { Controls, Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,14 @@ const ErrorPage = () => {
     <div className="h-screen flex items-center justify-center">
       <div className="text-center">
         <div>
+          <div>
+            <Player
+              autoplay
+              loop
+              src="https://assets10.lottiefiles.com/private_files/lf30_hdjv06hi.json"
+              style={{ height: "300px", width: "300px" }}
+            ></Player>
+          </div>
           <h1 className="text-3xl font-bold">Something went wrong!</h1>
         </div>
         <div className="py-3 text-start">
