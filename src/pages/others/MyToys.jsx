@@ -2,17 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../userManagement/AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../../useTitle";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [usersToys, setUsersToys] = useState([]);
-  const [isLoading, setLoading] = useState(false);
+  useTitle("Mytoys");
+
   const [loadAgain, setLoadAgain] = useState(true);
   console.log(user);
   console.log(usersToys);
 
   useEffect(() => {
-    setLoading(true);
     fetch("https://imperial-toys.vercel.app/alltoys")
       .then((res) => res.json())
       .then((data) => {
@@ -21,7 +22,6 @@ const MyToys = () => {
           (singleData) => singleData?.seller_email === user?.email
         );
         setUsersToys(userSpecificToys);
-        setLoading(false);
       });
   }, [user, loadAgain]);
 
@@ -54,7 +54,7 @@ const MyToys = () => {
       <h1 className="text-4xl font-bold text-center pb-4">My toys</h1>
 
       <>
-        {usersToys ? (
+        {usersToys.length ? (
           <div className="overflow-x-auto w-full">
             <table className="table w-full">
               {/* head */}

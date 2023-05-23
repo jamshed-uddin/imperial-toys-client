@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../useTitle";
 
 const AllToys = () => {
   const [alltoys, setAllToys] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  useTitle("Alltoys");
   useEffect(() => {
     setLoading(true);
     fetch("https://imperial-toys.vercel.app/alltoys")

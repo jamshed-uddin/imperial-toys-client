@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useTitle from "../../useTitle";
 
 const UpdateToy = () => {
   const [singleToy, setSingleToy] = useState([]);
   const { toyId } = useParams();
+  useTitle("Update-toys");
 
   useEffect(() => {
     fetch(`https://imperial-toys-server.vercel.app/singletoy/${toyId}`)

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
+import useTitle from "../../useTitle";
 
 const Login = () => {
   const [errorText, setErrorText] = useState("");
@@ -8,6 +9,7 @@ const Login = () => {
   const { login, handleGoogleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  useTitle("Login");
 
   const from = location.state?.from?.pathname || "/";
   const handleUserLogin = (event) => {

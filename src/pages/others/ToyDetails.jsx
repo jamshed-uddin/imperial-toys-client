@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useTitle from "../../useTitle";
 
 const ToyDetails = () => {
   const [toyDetails, setToyDetails] = useState([]);
   const { toyId } = useParams();
   const [isLoading, setLoading] = useState(false);
+  useTitle("Toydetails");
 
   useEffect(() => {
     setLoading(true);

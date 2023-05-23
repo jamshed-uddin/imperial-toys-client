@@ -1,8 +1,10 @@
 import { Controls, Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../useTitle";
 
 const ErrorPage = () => {
+  useTitle("Error");
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="text-center">
