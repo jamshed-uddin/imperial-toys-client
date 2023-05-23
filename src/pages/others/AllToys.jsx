@@ -6,7 +6,7 @@ const AllToys = () => {
   const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("https://imperial-toys-server.vercel.app/alltoys")
+    fetch("https://imperial-toys.vercel.app/alltoys")
       .then((res) => res.json())
       .then((data) => {
         setAllToys(data);

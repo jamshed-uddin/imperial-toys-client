@@ -8,7 +8,7 @@ const ToyDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://imperial-toys-server.vercel.app/singletoy/${toyId}`)
+    fetch(`https://imperial-toys.vercel.app/singletoy/${toyId}`)
       .then((res) => res.json())
       .then((data) => {
         setToyDetails(data);

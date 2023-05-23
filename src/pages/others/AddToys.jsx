@@ -29,7 +29,7 @@ const AddToys = () => {
       description,
     };
 
-    fetch("https://imperial-toys-server.vercel.app/alltoys", {
+    fetch("https://imperial-toys.vercel.app/alltoys", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(toyInfo),

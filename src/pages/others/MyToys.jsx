@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../userManagement/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [usersToys, setUsersToys] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [loadAgain, setLoadAgain] = useState(true);
   console.log(user);
   console.log(usersToys);
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://imperial-toys-server.vercel.app/alltoys")
+    fetch("https://imperial-toys.vercel.app/alltoys")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -21,14 +23,30 @@ const MyToys = () => {
         setUsersToys(userSpecificToys);
         setLoading(false);
       });
-  }, [user]);
+  }, [user, loadAgain]);
 
   const handleDeleteToy = (toyId) => {
-    fetch(`https://imperial-toys-server.vercel.app/alltoys/${toyId}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((result) => console.log(result));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://imperial-toys.vercel.app/alltoys/${toyId}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+            setLoadAgain(!loadAgain);
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          });
+      }
+    });
   };
 
   return (
