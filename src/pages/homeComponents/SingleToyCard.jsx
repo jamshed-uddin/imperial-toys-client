@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const SingleToyCard = ({ toyCard }) => {
   useEffect(() => {
     AOS.init();
   }, []);
-  const { image_url, price, toy_name, rating } = toyCard;
+  const { _id, image_url, price, toy_name, rating } = toyCard;
 
   return (
     <div
@@ -30,10 +31,12 @@ const SingleToyCard = ({ toyCard }) => {
           </p>
         </div>
         <div className="bg-white px-4 py-3 rounded-full">
-          <FontAwesomeIcon
-            className="text-2xl text-pink-600"
-            icon={faAngleRight}
-          />
+          <Link to={`../toydetails/${_id}`} className="text-2xl text-pink-600">
+            <FontAwesomeIcon
+              className="text-2xl text-pink-600"
+              icon={faAngleRight}
+            />
+          </Link>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ const ToyDetails = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center py-8">
           <div>
-            <img src={toyDetails?.image_url} alt="" />
+            <img className="w-11/12" src={toyDetails?.image_url} alt="" />
           </div>
           <div className="space-y-3">
             <h1 className="text-4xl font-bold">{toyDetails?.toy_name}</h1>
