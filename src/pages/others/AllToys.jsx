@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AllToys = () => {
+  const [alltoys, setAllToys] = useState([]);
+  useEffect(() => {
+    fetch("https://imperial-toys-server.vercel.app/alltoys")
+      .then((res) => res.json())
+      .then((data) => setAllToys(data));
+  }, []);
+
+  console.log(alltoys);
   return (
     <div className="py-10">
       <h1 className="text-4xl font-bold text-center pb-4">All toys</h1>
@@ -34,27 +42,28 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <td>1</td>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
+            {alltoys.slice(0, 20).map((toy, index) => (
+              <tr key={toy}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div>
+                      <div className="font-bold">{toy?.seller_name}</div>
+                    </div>
                   </div>
-                </div>
-              </td>
+                </td>
 
-              <td>batman</td>
-              <td>dc</td>
-              <td>34.43</td>
-              <td>112</td>
-              <th>
-                <Link className="btn btn-sm bg-pink-600 hover:bg-pink-500 border-0">
-                  details
-                </Link>
-              </th>
-            </tr>
+                <td>{toy?.toy_name}</td>
+                <td>{toy?.sub_category}</td>
+                <td>{toy?.price}</td>
+                <td>{toy?.quantity}</td>
+                <th>
+                  <Link className="btn btn-sm bg-pink-600 hover:bg-pink-500 border-0">
+                    details
+                  </Link>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
