@@ -10,8 +10,6 @@ const MyToys = () => {
   useTitle("Mytoys");
 
   const [loadAgain, setLoadAgain] = useState(true);
-  console.log(user);
-  console.log(usersToys);
 
   useEffect(() => {
     fetch("https://imperial-toys.vercel.app/alltoys")

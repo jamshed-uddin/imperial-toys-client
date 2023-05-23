@@ -41,7 +41,6 @@ const AddToys = () => {
         console.log(result);
         Swal.fire("Toy added successfully.");
       });
-    console.log(toyInfo);
   };
 
   return (

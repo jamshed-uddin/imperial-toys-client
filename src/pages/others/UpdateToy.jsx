@@ -20,7 +20,6 @@ const UpdateToy = () => {
     const quantity = form.quantity.value;
     const description = form.description.value;
     const updatedToyInfo = { price, quantity, description };
-    console.log(updatedToyInfo);
 
     fetch(`https://imperial-toys.vercel.app/singletoy/${toyId}`, {
       method: "PUT",
@@ -33,7 +32,6 @@ const UpdateToy = () => {
       .then((result) => console.log(result));
   };
 
-  console.log(singleToy);
   return (
     <div className="py-10">
       <h1 className="text-4xl text-center font-bold">
