@@ -14,6 +14,7 @@ import Register from "./pages/userManagement/Register";
 import AuthProvider from "./pages/userManagement/AuthProvider";
 import ToyDetails from "./pages/others/ToyDetails";
 import UpdateToy from "./pages/others/UpdateToy";
+import PrivateRoute from "./pages/userManagement/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -31,15 +32,27 @@ const router = createBrowserRouter([
       },
       {
         path: "mytoys",
-        element: <MyToys></MyToys>,
+        element: (
+          <PrivateRoute>
+            <MyToys></MyToys>
+          </PrivateRoute>
+        ),
       },
       {
         path: "addtoys",
-        element: <AddToys></AddToys>,
+        element: (
+          <PrivateRoute>
+            <AddToys></AddToys>
+          </PrivateRoute>
+        ),
       },
       {
         path: "toydetails/:toyId",
-        element: <ToyDetails></ToyDetails>,
+        element: (
+          <PrivateRoute>
+            <ToyDetails></ToyDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "updatetoy/:toyId",
